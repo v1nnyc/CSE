@@ -1,0 +1,11 @@
+public class BasicCode{
+  public static void main (String[] args){
+    System.out.println(foo(4,3,2));
+  }
+  public static int foo(int a, int b, int c){
+    return bar(a+2,b+3);
+  }
+  public static int bar(int x, int y){
+    return x+y+c+3;
+  }
+}

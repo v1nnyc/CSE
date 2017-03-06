@@ -1,0 +1,1 @@
+public class Happy {   public Happy() {     this(2,4);     System.out.println("Happy once"); }   public Happy(int x, int y) {     System.out.println("Happy twice "+(x+y)); }   public String toString() {     System.out.println("Happy.toString");     return "Happy"; } }

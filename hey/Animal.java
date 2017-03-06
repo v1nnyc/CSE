@@ -1,0 +1,1 @@
+public class Animal {   private String name;   public Animal() {     this.name = "Animal"; }   public Animal( String name ) {     this.name = name; }   public String getName() {     return this.name; }   public String speak() {     return "???"; } }

@@ -1,0 +1,17 @@
+Program description:
+Board.java:
+this program makes the board for the game 2048. it can make a new board, or it can load one if you’ve already started a game. it’s also responsible adding new tiles to the board after you move. and for some reason it includes a method that rotates the board.
+gamemanager.java:
+this program basically makes sure that you’re following the rules. when you input a move it checks to see if thats a valid input, and if it is, it assigns it to a move and then moves that way. if the input isn’t valid then you’re reprompted to enter a move.
+
+short responses:
+vim:
+1. you can jump to a certain line by using G. (to go to line 20 you’d enter 20G.)
+2.you can turn on autoindent by entering :set autoindent in the command line. to turn it off you can enter :set noautoindent.
+3. the command to undo changes is “u”
+4.so there are four ways you can jump forward by word. the first is w, it jumps by the start of words, and considers punctuation as a word. W also jumps by the start of words, however is uses spaces to separate the words. using e will jump to the end of words, and considers punctuation. E jumps to the end of words but doesnt consider punctuation to be a word. to go back you can use either b or B. b considers punctuation to be a word, B doesnt.
+
+unix/linux:
+5. to remove all .class files in a unix directory, (ok im assuming that you’re asking this as if we were already in that directory) you can enter “rm *.class”
+6. to remove a directory you use “rmdir whateverthedirectoryiscalled”. a directory must be empty before you can use rmdir, though. so if a directory isn’t empty you can use “rm -r whateverthedirectoryiscalled”
+7. to clear a unix terminal screen you can enter “clear” and it will clear it. or you can use “reset”. clear just clears the screen whereas reset re-initializes the terminal.

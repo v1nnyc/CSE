@@ -1,0 +1,1 @@
+public class Polygon extends Shape implements Drawable {   private static final String               DRAW_POLYGON = "Drawing Polygon";   private int sides;   public Polygon() {     this.sides = 5; }   public String draw() {     return DRAW_POLYGON; }   public int getSides() {     return sides; } }

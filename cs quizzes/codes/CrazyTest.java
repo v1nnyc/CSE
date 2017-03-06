@@ -1,0 +1,1 @@
+public class CrazyTest {   public static void main(String[] args) {     Crazy ref = new Crazy(2,4);     System.out.println(ref.toString());   } }

@@ -1,0 +1,11 @@
+import java.awt.*;
+public class Lion extends Critter{
+  public Lion(){
+  }
+  public Color getColor() {
+    return Color.RED;
+  }
+  public boolean eat() {
+    return false;
+  }
+}

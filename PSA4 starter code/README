@@ -1,0 +1,23 @@
+Program Description:
+Board.java:
+this program makes the board for the game 2048. it can make a new board, or it can load one if you’ve already started a game. it’s also responsible adding new tiles to the board after you move. and for some reason it includes a method that rotates the board.
+gamemanager.java:
+this program basically makes sure that you’re following the rules. when you input a move it checks to see if thats a valid input, and if it is, it assigns it to a move and then moves that way. if the input isn’t valid then you’re reprompted to enter a move. i also added an undo function so if you mess up you can press u and it will undo your last move :)
+2048 game:
+this is a game when you have a grid of 4x4 and it starts off with two tiles. you can move the tiles up down left right and every time you combine two tiles with the same number, their number is doubled. starting from two 2 tiles, your goal is to combine enough tiles to get a 2048 tile
+
+Short Responses:
+Unix/Linux:
+1. ok so you’d use the cp command and the basic idea is “cp /directory you’re copying from/filename /destination directory”
+you can use ../ to refer to the parent directory of the directory you’re in SO to get fubar from 3 directories above the working directory (assuming you’re already in the directory you want to copy to)
+the command line would be “cp ../../../fubar ./“
+./ would be the shortcut to the working directory
+2. typing in man cat will open the online manual for instructions on how to use the cat command.
+
+vim qs:
+3.you can jump to a certain line by using G. (to go to line 20 you’d enter 20G.)
+4. gg will move you to the beginning of the first line and G will move you to the last line
+
+java: 
+5. two requirements for a constructor are the name of the constructor which needs to be the same name as the class that its in, and an access modifier. parameters are optional.
+6. using the static keyword means a member variable can be accessed without first requiring an instantiation by the class that it’s in.

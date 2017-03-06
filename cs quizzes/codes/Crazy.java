@@ -1,0 +1,1 @@
+public class Crazy extends Happy {   public Crazy() {     System.out.println("Crazy once"); }   public Crazy(int x, int y) {     this();     System.out.println("Crazy twice "+ x + y);   }   public String toString() {     String s = super.toString() + " + " +                "Crazy.toString";     System.out.println(s);     return "Crazy";   } }

@@ -1,0 +1,18 @@
+public class Feline extends Animal { 
+  public void makeNoise() {   
+    super.makeNoise();    
+    System.out.println("Purr");  
+  }  
+  public void roam() {  
+    System.out.println("Travel alone");
+  }
+} 
+public class Tiger extends Feline { 
+  public void makeNoise() {     
+    System.out.println("Roar!");
+  }  
+  public void hunt() { 
+    this.roam();   
+    System.out.println("Attack!");
+  } 
+}

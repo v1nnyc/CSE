@@ -1,0 +1,24 @@
+Program Descriptions:
+CS8BTurtle.java:
+This is a program that has a little turtle that draws things. For this program specifically we have it draw letters and a few numbers to spell out “CS8BWALS WINTER 2016”. It has little instructions in it that tells the turtle how to draw each letter and each number. At the end there’s instructions that tell the turtle where and what to draw everything.
+
+CS8BTurtle_Threaded.java:
+This is a program that has multiple little turtles (instead of one) draw things. For this program specifically we have each turtle draw either a letter or a number to spell out “CS8BWALS WINTER 2016”. It has little instructions in it that tells each turtle how to draw each letter and each number. At the end there’s instructions that split the job of drawing everything into separate tasks and then assign the task to a different turtle.
+
+PSA9_ExtraCredit:
+This is similar to CS8BTurtle_Threaded.java in that it has multiple turtles drawing multiple things, and that it has instructions in it that tells each turtle how to draw each letter and each number. At the end there’s instructions that split the job of drawing everything into separate tasks and then assign the task to a different turtle, too. It differs in that the turtles spell out “JAVA THREAD”, and then “JAVA THREAD” mirrored upside down.
+
+Short Responses:
+Vim Q’s:
+1. To make a marker you type m and then a letter.
+2. To go to that marker you type a backtick and then the letter of the marker.
+
+Unix Q’s:
+3. The command to display the first five lines of a file to terminal is “head -5 filename”
+for the last five lines use “tail -5 filename”
+4. To transfer files across accounts use “cp ~<username of account with file>/<path>/<filename>
+~<username of account to transfer to>/<path>/<filename>”
+
+Java Q’s:
+5. Given that code, Rect’s class’s toString() would be called. During compile time it would check Arectangle’s toString(), but during runtime java would call the method belonging to the object type’s class.
+6. The constructor of the parent class. So in the case of the example it is an instance of Foo’s constructor.

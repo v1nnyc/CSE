@@ -1,0 +1,89 @@
+import java.util.*;
+import java.util.Scanner;
+public class ReverseRecurse extends PA6Strings {
+  //you shouldn’t create any instance fields for this class
+  
+  public int[] initArray() {
+    int size=0;
+    Scanner in = new Scanner( System.in ); 
+    System.out.println(MAX_NUM);
+    if ( in.hasNextInt() ) {
+      size = in.nextInt();
+    } 
+    else {
+      System.exit(1);
+    }
+    if ( size <= 0){
+      System.out.println(TOO_SMALL);
+      int[] array = initArray();
+      return array;
+      
+    }
+    
+    int[] array = new int[size];
+    int[] copy = new int[0];
+    for (int i = 0; i < array.length; i++)
+    {
+      System.out.printf(PA6Strings.ENTER_INTS, size);
+      if ( in.hasNextInt() ) {
+        array[i] = in.nextInt();
+        copy = makeCopy(array, i+1);
+      } 
+      else {
+        return copy;
+      }
+    }  
+    return array;
+  }
+  
+  public void printArray( int[] array ) {
+    if(array.length == 0){
+      System.out.println(EMPTY);
+    }
+    else{
+    for(int i = 0; i<array.length;i++){
+      System.out.print(array[i]+" ");
+    }
+    System.out.println("");
+    }
+  }    
+  
+  /* 
+   * The following two reverse() methods must be implemented
+   * using recursion.
+   */
+  public int[] makeCopy(int[] array, int length){
+    int[] temp = new int[length];
+    for(int i = 0; i<length;i++){
+      temp[i]=array[i];
+    }
+    return temp;
+  }
+  
+  public void reverse( int[] originalArray, int low, int high ){
+    if(originalArray != null){
+      if(low<high){
+        int tmp = originalArray[low];
+        originalArray[low] = originalArray[high];
+        originalArray[high] = tmp;
+        reverse(originalArray, ++low, --high);
+      }
+    }
+  }
+  
+  public int[] reverse( int[] originalArray ) { 
+    if(originalArray != null&&originalArray.length !=0){
+      int[]copy = makeCopy(originalArray, originalArray.length);
+      int tmp = originalArray[0];
+      copy[0] = originalArray[originalArray.length-1];
+      copy[copy.length-1] = tmp;
+      if(originalArray.length>2){
+        int[] temp = new int[originalArray.length-2];
+        System.arraycopy(originalArray, 1, temp,0,originalArray.length-2);
+        System.arraycopy(reverse(temp), 0, copy,1,reverse(temp).length);
+      }
+      return copy;
+    }
+    return originalArray;
+  }
+}

@@ -1,0 +1,23 @@
+Program Description:
+WordPair.java:
+this is a computer program that makes things called objects. in this program the objects are called “wordpairs”. each wordpair has a word and a number that goes with it. 
+in the program there are several methods that do different things.
+the first is one that makes a word pair. you give it a word and it makes a new wordpair with that word and a number (1). there’s also a method to get a word from a wordpair, and a similar method that gets the number from the wordpair. there’s a method that will increment the number in the wordpair by one, and another similar method that allows you to change the number in the wordpair to any number you want. finally, there’s a method called toString, which prints the word and the number of the wordpair.
+
+WordCloudTester.java:
+this program is important, because it tests the other programs to make sure they run correctly. the program starts by creating a new wordcloud. it then prints out what file you chose to run it with. it then gets the words from the file, and removes any commonly used words. it has a portion that determines whether or not the wordcloud will be printed into a file or out onto the console. finally, it prints the top words in the wordcloud to either the file or the console.
+
+WordCloud.java:
+this is the program that does the most, out of the three. when you choose a file in wordcloudtester, wordcloud reads through that file and uses the wordpair program to assign every word to a wordpair object. there are many smaller useful methods in wordcloud, for example there’s a method that finds the amount of times a word is used in the file, and one that will remove commonly used words. when wordcloudtester prints the topnwords, wordcloud has a method to find them. wordcloud also has a method that is responsible for printing the wordpairs to the console or to a file.
+
+Short Responses:
+1. to switch from insert mode to command mode you press esc, which returns you to normal mode, and then press : to enter commands.
+2. One way to enter insert mode is to press i, you can also press a.
+3.a)you can quit a file by entering :wq or :q
+b) you can quit without saving by entering :q!
+4.a) you can save a file in vim by entering :w or :wq (if you want to quit)
+b) entering :wq allows you to save and quit a file in vim.
+5.a) you can change directories by typing cd “directory name”
+b) to change to the home directory enter cd /home.
+6. you can make a directory by entering mkdir “directory name”.
+7. you can show the path to the directory you’re in by entering “pwd”

@@ -1,0 +1,134 @@
+/* 
+ * Name: Vincent Cannalla 
+ * Login: cs8bwals  <<< --- Use your cs8b course-specific account name 
+ * Date: February 22, 2016
+ * File:  Point.java 
+ * Sources of Help: piazza
+ * 
+ *This is the class responsible for points.
+ */
+public class Point {
+  private int x;
+  private int y;
+  
+  
+  /* 
+   * Name: Point
+   * Purpose: this is a Point constructor. it assigns an x and y int to the 
+   * member variables
+   * Parameters: none
+   * Return: none 
+   */
+  public Point() {
+    this.x = 0;
+    this.y = 0;
+  }
+  
+  
+  /* 
+   * Name: Point
+   * Purpose: this is a Point constructor. it assigns an x and y int to the 
+   * member variables
+   * Parameters: ints, x and y.
+   * Return: none 
+   */
+  public Point(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+  
+  
+  /* 
+   * Name: Point
+   * Purpose: this is a Point constructor. it assigns an x and y int to the 
+   * member variables
+   * Parameters: Point. another point reference.
+   * Return: none 
+   */
+  public Point(Point point) {
+    //account for nullpointer edge case
+    if(point == null){
+      point = new Point();
+    }
+    this.x = point.getX();
+    this.y = point.getY();
+  }
+  
+  
+  /* 
+   * Name: move
+   * Purpose: this is a method to move the points in some direction.
+   * Parameters: ints, xDelta and yDelta, which are the directions that 
+   * the point should move
+   * Return: none 
+   */
+  public void move(int xDelta, int yDelta) {
+    //add the delta values to the points
+    this.x += xDelta;
+    this.y += yDelta;
+  }
+  
+  
+  /* 
+   * Name: getX
+   * Purpose: this is a getter for the x int.
+   * Parameters: none
+   * Return: the x int. 
+   */
+  public int getX() {
+    return this.x;
+  }
+  
+  
+  /* 
+   * Name: getY
+   * Purpose: this is a getter for the y int.
+   * Parameters: none
+   * Return: the y int. 
+   */
+  public int getY() {
+    return this.y;
+  }
+  
+  
+  /* 
+   * Name: toString
+   * Purpose: this converts the member variables and name into a string
+   * Parameters: none
+   * Return: String 
+   */
+  @Override
+  public String toString() {
+    return new String(getX() + "," + getY());
+  }
+  
+  
+  /* 
+   * Name: equals
+   * Purpose: this tests to make sure that the object is an instance of the
+   * class that it says to be. it checks all of the member variables for that
+   * kind of object.
+   * Parameters: Object o
+   * Return: boolean. 
+   */
+  @Override
+  public boolean equals(Object o) {
+    //first check to make sure it's an instance of the class
+    //then check that all the member variables match
+    return (o instanceof Point 
+              && this.getX() == ((Point) o).getX() 
+              && this.getY() == ((Point) o).getY());
+  }
+  
+  
+  /* 
+   * Name: hashCode
+   * Purpose: this returns the hashcode
+   * Parameters: none
+   * Return: int. 
+   */
+  @Override
+  public int hashCode() {
+    return this.toString().hashCode();
+  }
+}

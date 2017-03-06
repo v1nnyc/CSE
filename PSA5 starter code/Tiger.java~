@@ -1,0 +1,11 @@
+import java.awt.*;
+public class Tiger extends Critter{
+  public int hunger;
+  public Tiger(int hunger){
+    this.hunger = hunger;
+  }
+  public Color getColor() {
+  return Color.YELLOW;
+ }
+  
+}

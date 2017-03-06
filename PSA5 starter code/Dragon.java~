@@ -1,0 +1,6 @@
+import java.awt.*;
+import java.util.Random;
+public class Dragon extends Critter{
+  public Dragon(){
+  }
+}

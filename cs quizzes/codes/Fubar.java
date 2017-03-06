@@ -1,0 +1,1 @@
+public class Fubar extends Foo {   public Fubar() {     this( 42, 420 );     System.out.println( "Fubar ctor #1" ); }   public Fubar( int x, int y ) {     System.out.println( "Fubar ctor #2" ); }   public String toString() {     String s = super.toString() + " + " +                "Fubar.toString";     System.out.println( s );     return "Fubar";   } }

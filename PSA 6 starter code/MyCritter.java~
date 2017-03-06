@@ -1,0 +1,234 @@
+import java.util.*;
+import java.awt.*;
+import java.util.Random;
+
+public class MyCritter extends Critter{
+  private int moveC;
+  private Random randGen;
+  private int getRand;
+  private int runAway;
+  public Direction dire;
+  public String opp;
+
+  public MyCritter(){
+    this.randGen = new Random();
+    this.moveC = 1;
+    this.runAway = 5;
+    this.dire = Direction.NORTH;
+    this.opp = new String("0");
+  }
+  public boolean eat() {
+    return true;
+  }
+
+  public Attack fight(String opponent) {
+    this.opp = opponent;
+    runAway();
+    while(moveC<700){
+    if(opponent.equals("B")||isStringInt(opponent))
+      return Attack.ROAR;
+    else if(opponent.equals("0")||opponent.equals("L"))
+      return Attack.SCRATCH;
+    else if(opponent.equals("E")||!opponent.equals(toString())){
+      getRand = randGen.nextInt(3);
+      if(getRand == 1)
+        return Critter.Attack.ROAR;
+      if(getRand == 2)
+        return Critter.Attack.POUNCE;
+      else
+        return Critter.Attack.SCRATCH;
+    }
+    else
+      return Attack.POUNCE;
+  }
+    return Attack.SCRATCH;
+  }
+
+
+  public Color getColor() {
+    /*int height = 255/(getHeight()+1);
+    int width = 255/(getWidth()+1);
+    int blue = getX();
+    int red = getY();
+    return (new Color(height*red,0,width*blue));*/
+    return Color.WHITE;
+      //(new Color(200,250,130));
+  }
+
+  public Direction getMove() {
+    this.moveC +=1;
+    if(moveC < 200){
+    if(getNeighbor(Critter.Direction.SOUTH).equals("."))
+            return Critter.Direction.SOUTH;
+        if(getNeighbor(Critter.Direction.NORTH).equals("."))
+            return Critter.Direction.NORTH;
+        if(getNeighbor(Critter.Direction.WEST).equals("."))
+            return Critter.Direction.WEST;
+        if(getNeighbor(Critter.Direction.EAST).equals("."))
+            return Critter.Direction.EAST;
+    }
+    runAway();
+    return dire;
+    /*while(!isENext()&&runAway < 5){
+      this.runAway +=1;
+      return dire;
+    }*/
+
+    /*
+      int move = moveC %9;
+      if(move== 1||move == 2||move==3){
+        this.moveC += 1;
+        return Direction.EAST;
+      }
+      else if(move== 4||move == 5){
+        this.moveC +=1;
+        return Direction.NORTH;
+      }
+      else if(move== 6){
+        this.moveC +=1;
+        return Direction.WEST;
+      }
+      else{
+        this.moveC +=1;
+        return Direction.SOUTH;
+      }*/
+    }
+
+  public void runAway(){
+   if(preda(Direction.NORTH))
+     this.dire = Direction.SOUTH;
+   else if(preda(Direction.EAST))
+     this.dire = Direction.WEST;
+   else if(preda(Direction.SOUTH))
+     this.dire = Direction.NORTH;
+   else if(preda(Direction.WEST))
+     this.dire = Direction.EAST;
+  // else
+     //this.dire = Direction.CENTER;
+    /* if(!getNeighbor(Direction.NORTH).equals(" ")&&!getNeighbor(Direction.NORTH).equals(toString())){
+      System.out.println(getNeighbor(Direction.NORTH));
+      this.dire = Direction.SOUTH;
+    }
+    else if(!getNeighbor(Direction.EAST).equals(" ")&&!getNeighbor(Direction.EAST).equals(toString())){
+      System.out.println(getNeighbor(Direction.EAST));
+      this.dire = Direction.WEST;
+    }
+    else if(!getNeighbor(Direction.SOUTH).equals(" ")&&!getNeighbor(Direction.SOUTH).equals(toString()))
+      this.dire = Direction.NORTH;
+    else if(!getNeighbor(Direction.WEST).equals(" ")&&!getNeighbor(Direction.WEST).equals(toString()))
+      this.dire = Direction.EAST;
+    else if(getNeighbor(Direction.NORTH).equals(" "))
+      this.dire = Direction.CENTER;
+    else if(getNeighbor(Direction.EAST).equals(" "))
+      this.dire = Direction.CENTER;
+    else if(getNeighbor(Direction.SOUTH).equals(" "))
+      this.dire = Direction.CENTER;
+    else if(getNeighbor(Direction.WEST).equals(" "))
+      this.dire = Direction.CENTER;*/
+  }
+  public boolean preda(Direction dir){
+    if(!getNeighbor(dir).equals(toString())&&!getNeighbor(dir).equals(" ")&&!getNeighbor(dir).equals(".")){
+      return true;
+  }
+    else
+      return false;
+  }
+
+  public Direction isE(){
+    if(!getNeighbor(Direction.NORTH).equals("!"))
+      return Direction.SOUTH;
+    else if(!getNeighbor(Direction.EAST).equals("!"))
+      return Direction.WEST;
+    else if(!getNeighbor(Direction.SOUTH).equals("!"))
+      return Direction.NORTH;
+    else if(!getNeighbor(Direction.WEST).equals("!"))
+      return Direction.EAST;
+    else
+      return Direction.NORTH;
+  }
+
+  public String toString() {
+
+    return opp;
+    /*
+    if(moveC < 200)
+    return "0";
+    else if(moveC > 200 && moveC <= 350)
+      return "B";
+    else if(moveC > 350 && moveC <= 500)
+      return "L";
+    else if(moveC > 500 && moveC <= 700)
+      return "T";
+    else
+      return "0";*/
+  }
+  public static boolean isStringInt(String opponent){
+   //tI is tiger int bc im using this method to see if the int is a tiger
+    ArrayList<String> tI = new ArrayList<String>();
+    tI.add("1");
+    tI.add("2");
+    tI.add("3");
+    tI.add("4");
+    tI.add("5");
+    tI.add("6");
+    tI.add("7");
+    tI.add("8");
+    tI.add("9");
+    tI.add("10");
+    if(tI.contains(opponent))
+      return true;
+    else
+      return false;
+  }
+
+}
+/*public static Direction isFood(Direction dir){
+  if(getNeighbor(Critter.Direction.SOUTH).equals("."))
+            return Critter.Direction.SOUTH;
+        if(getNeighbor(Critter.Direction.NORTH).equals("."))
+            return Critter.Direction.NORTH;
+        if(getNeighbor(Critter.Direction.WEST).equals("."))
+            return Critter.Direction.WEST;
+        if(getNeighbor(Critter.Direction.EAST).equals("."))
+            return Critter.Direction.EAST;
+}
+  /*public static boolean isStringInt(String opponent){
+   //tI is tiger int bc im using this method to see if the int is a tiger
+    List<String> tI = new ArrayList<String>();
+    tI.add("1");
+    tI.add("2");
+    tI.add("3");
+    tI.add("4");
+    tI.add("5");
+    tI.add("6");
+    tI.add("7");
+    tI.add("8");
+    tI.add("9");
+    tI.add("10");
+    if(tI.contains(opponent))
+      return true;
+    else
+      return false;
+  }*/
+
+
+/*else if(opponent.equals("1"))
+      return true;
+    else if(opponent.equals("2"))
+      return true;
+    else if(opponent.equals("3"))
+      return true;
+    else if(opponent.equals("4"))
+      return true;
+    else if(opponent.equals("5"))
+      return true;
+    else if(opponent.equals("6"))
+      return true;
+    else if(opponent.equals("7"))
+      return true;
+    else if(opponent.equals("8"))
+      return true;
+    else if(opponent.equals("9"))
+      return true;
+    else if(opponent.equals("10"))
+      return true;*/

@@ -1,0 +1,1 @@
+public class Lion extends Cat {   public Lion() {     super( "Lion" ); }   public Lion( String name ) {     super( name + " Lion" ); }   public String speak() {     return "Roar"; } }

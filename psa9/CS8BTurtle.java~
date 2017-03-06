@@ -1,0 +1,376 @@
+/*
+ * Name:  Jane-Joe Student  <<< --- Replace with Your Name
+ * Login: cs8BfXXX  <<< --- Use your cs8Bf course-specific account name
+ * Date:  Month Day, Year
+ * File:  Name of this file, for example: CS8BTurtle.java
+ * Sources of Help: ... (for example: names of people/tutors/students, books, websites, etc.)
+ *
+ * Describe what this program does here.
+ */
+
+import turtleClasses.*;
+import java.awt.Color;
+
+/*
+ * Name:       Class name
+ * Purpose:    Briefly describe the purpose of this class
+ */
+
+public class CS8BTurtle extends Turtle {
+  private final static int CHAR_WIDTH = 40;
+  private final static int CHAR_HEIGHT = 80;
+  private final static int PADDING_BETWEEN_CHARS = 40;
+  private final static int PADDING_BETWEEN_LINES = 40;
+  private final static int CHAR_SPACING = CHAR_WIDTH + PADDING_BETWEEN_CHARS;
+  private final static int LINE_SPACING = CHAR_HEIGHT + PADDING_BETWEEN_LINES;
+  
+  private final static int WORLD_WIDTH = 800;
+  private final static int WORLD_HEIGHT = 500;
+  
+  private final static int START_X_1 = ((WORLD_WIDTH/2) - (CHAR_SPACING * 4) + 20); // starting x offset for line 1
+  private final static int START_X_2 = ((WORLD_WIDTH/2) - (CHAR_SPACING * 3) + 20); // starting x offset for line 2
+  private final static int START_X_3 = ((WORLD_WIDTH/2) - (CHAR_SPACING * 2) + 20); // starting x offset for line 3
+  private final static int START_Y = (int)((WORLD_HEIGHT/2) - (LINE_SPACING * 1.5)+20);   // starting y offset
+  
+  private final static int PEN_WIDTH = 10;
+  private final static Color PEN_COLOR = Color.BLUE;
+  
+  
+  
+  /*
+   * Delay between turtle actions (turns, moves) in milliseconds.
+   * 1000 = 1 sec.  so  200 = 0.2 sec.
+   */
+  private final static int DELAY = 2;
+  
+  /*
+   * Name:       Constructor name
+   * Purpose:    Briefly describe the purpose of this constructor
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   */
+  
+  public CS8BTurtle(World w, int delay) {
+    super(w, delay);  // Invoke superclass's ctor to create this turtle
+  }                     // on World w with delay of each turtle's action.
+  
+  /*
+   * Name:       Method name
+   * Purpose:    Briefly describe the purpose of this method
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   * Return:     Specify the return type and what it represents.
+   *             If no return value, just specify void.
+   */
+  
+  private void drawC(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH);
+  }
+  
+  /*
+   * Name:       Method name
+   * Purpose:    Briefly describe the purpose of this method
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   * Return:     Specify the return type and what it represents.
+   *             If no return value, just specify void.
+   */
+  
+  private void drawS(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+  }
+  
+  private void draw8(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+  }
+  
+   private void drawB(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turn(30);
+    forward(CHAR_WIDTH);
+    turn(120);
+    forward(CHAR_WIDTH);
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turn(30);
+    forward(CHAR_WIDTH);
+    turn(120);
+    forward(CHAR_WIDTH);
+    turnToFace(getXPos() + 1, getYPos());
+    turnLeft();
+    forward(CHAR_HEIGHT);
+  }
+   
+   private void drawW(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turn(85);
+    forward(CHAR_HEIGHT);
+    turn(220);
+    forward(CHAR_HEIGHT/3);
+    turn(110);
+    forward(CHAR_HEIGHT/3);
+    turnToFace(getXPos() + 1, getYPos());
+    turn(-85);
+    forward(CHAR_HEIGHT);
+  }
+   
+   private void drawA(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    forward(CHAR_WIDTH/2);
+    penDown();
+    turn(75);
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT);
+    turnToFace(getXPos() + 1, getYPos());
+    turnRight();
+    turnRight();
+    turn(-75);
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT/2);
+    turnToFace(getXPos() + 1, getYPos());
+    forward(CHAR_WIDTH/2);
+  }
+   
+   private void drawL(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH);
+  }
+   
+   private void drawI(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH/2);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH/2);
+    backward(CHAR_WIDTH);
+  }
+   
+   private void drawN(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT);
+    turn(-30);
+    forward(CHAR_HEIGHT+10);
+    turnToFace(getXPos() + 1, getYPos());
+    turnLeft();
+    forward(CHAR_HEIGHT);
+  }
+   
+   private void drawT(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH/2);
+    turnRight();
+    forward(CHAR_HEIGHT);
+  }
+   
+   private void drawE(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+  }
+   
+    private void drawR(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnToFace(getXPos() + 1, getYPos());
+    turn(45);
+    forward(CHAR_WIDTH+15);
+  }
+    
+    private void draw2(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+  }
+    
+    private void draw0(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT);
+  }
+    
+    private void draw1(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    forward(CHAR_WIDTH/2);
+    penDown();
+    turn(-225);
+    forward(CHAR_WIDTH/2);
+    backward(CHAR_WIDTH/2);
+    turnToFace(getXPos() + 1, getYPos());
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnRight();
+    forward(CHAR_WIDTH/2);
+    backward(CHAR_WIDTH);
+  }
+    
+    private void draw6(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+  }
+  
+  /*
+   * Name:       Method name
+   * Purpose:    Briefly describe the purpose of this method
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   * Return:     Specify the return type and what it represents.
+   *             If no return value, just specify void.
+   */
+  
+  public static void main(String [] args) {
+    int startX1 = START_X_1,  // starting x offset for line 1
+      startX2 = START_X_2,  // starting x offset for line 2
+      startX3 = START_X_3;  // starting x offset for line 3
+    int startY  = START_Y;    // starting y offset
+    
+    int x, y;
+    
+    World w = new World(WORLD_WIDTH, WORLD_HEIGHT);
+    CS8BTurtle myTurtle = new CS8BTurtle(w, DELAY);
+    
+    myTurtle.setPenWidth(PEN_WIDTH);
+    myTurtle.setPenColor(PEN_COLOR);
+    
+    myTurtle.drawC(x = startX1, y = startY);
+    myTurtle.drawS(x += CHAR_SPACING, y);
+    myTurtle.draw8(x += CHAR_SPACING, y);
+    myTurtle.drawB(x += CHAR_SPACING, y);
+    myTurtle.drawW(x += CHAR_SPACING, y);
+    myTurtle.drawA(x += CHAR_SPACING, y);
+    myTurtle.drawL(x += CHAR_SPACING, y);
+    myTurtle.drawS(x += CHAR_SPACING, y);
+    myTurtle.drawW(x = startX2, y = y + LINE_SPACING);
+    myTurtle.drawI(x += CHAR_SPACING, y);
+    myTurtle.drawN(x += CHAR_SPACING, y);
+    myTurtle.drawT(x += CHAR_SPACING, y);
+    myTurtle.drawE(x += CHAR_SPACING, y);
+    myTurtle.drawR(x += CHAR_SPACING, y);
+    myTurtle.draw2(x = startX3, y = y + LINE_SPACING);
+    myTurtle.draw0(x += CHAR_SPACING, y);
+    myTurtle.draw1(x += CHAR_SPACING, y);
+    myTurtle.draw6(x += CHAR_SPACING, y);
+    
+    
+    /* TODO: Complete this main method to draw the remaining text */
+  }
+  
+}  // End of public class CS8BTurtle extends Turtle

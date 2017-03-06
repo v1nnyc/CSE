@@ -1,0 +1,14 @@
+Vim q
+1. to replace every one, use the command :%s/fun/amazing/g
+to replace just the first one use :s/fun/amazing
+
+
+unix:
+2. mkdir -p fooDir/barDir
+3. you can use it when creating an object, or to bound things, or you can use them as parameter types. 
+4. to open vim with all of the files in the current directory run vim *.java
+
+java q:
+5. it means that it can be called without a calling an instance of a class.
+if there was a method “method” that was static you could run it with just “method()”
+6. she should split them into different classes. and then just call on them from a main method.

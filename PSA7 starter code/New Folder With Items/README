@@ -1,0 +1,27 @@
+Program descriptions:
+Shape.java: this is an abstract class. it’s like a program that doesn’t really do anything itself, but is still important. so like imagine that you want 5 people to make cupcakes, and each person has to make their cupcake using the ingredients you provide, but they can use extra ingredients (like food coloring) and decorate it however they want. That’s kind of like what an abstract class does. It tells a bunch of other programs “hey i want something. You can make it however you want, but make sure it has these components in it”. But since this class is abstract, it doesn’t actually make any cupcakes, it just gives instructions.
+
+ARectangle.java: so this is another abstract class, but it’s a subclass of Shape.java. it works similarly to the cupcake metaphor. Imagine 1 of those 5 cupcake-making-people had two other people make cupcakes for them and they said “ok i want you to make cupcakes. you have to use all these ingredients that the last person told me I had to use, but you guys need to make your’s rectangle shaped.” that’s basically what this class does. it doesn’t actually make the cupcakes, it just passes down instructions to more cupcake makers.
+
+Circle.java: (this is one of the cupcake makers) it makes circle shapes. you tell it how big the circle is and where the circle has to go and it says “ok” and does it. You can tell it the size and where to go and it will put a shape there. You can make a new circle, or give it a radius and center point, or you can show it another circle and it’ll copy that circle. It can also move circles.
+
+CSE8B_Line.java: this makes lines. You can tell it the size and where to go and it will put a shape there. You can make a new line, or you can give it some points to connect, or you can show it another line and it’ll copy that line. It will also move lines.
+
+Rectangle.java: this makes rectangles. You can tell it the size and where to go and it will put a shape there. You can make a new rectangle, or you can give it some points and a width and length, or you can show it another rectangle and it’ll copy that rectangle. It will also move rectangles.
+
+Square.java: this nearly identical to the rectangle class, except it has “side” instead of “width” and “height”. it makes squares. You can tell it the size and where to go and it will put a square there. You can make a new square, or you can give it some points and a value for the side length, or you can show it another square and it’ll copy that square. It will also move squares.
+
+Triangle.java: This class makes triangle shapes. It works by making three lines that are connected at their end and starts. You can make a new triangle, or you can give it three points, or you can show it another triangle and it’ll copy that triangle. It will also move triangles.
+
+Point.java: this is kind of just a class to help out all the other shape-making classes. The classes need coordinates (so the computer knows where to put the shape) and instead of telling each shape-class how to handle points, it’s easier to have another class that can do it for all of them. All this class does is keep track of x and y values, it also has instructions for telling the classes what their x and y values are.
+
+When all the classes come together they can make pictures. The shape-makers have instructions so they know how to assign sizes and colors to the shapes that they make.
+
+
+
+Short Responses:
+1. You could change a value in the object that was copied, and then check the values of the deep copied object. if, after you change the copied object’s values, the values are the same in both then it was a shallow copy; if the values are different then it was a deep copy.
+or if (object == object copy) returns true then it is a shallow copy, because that would mean that are references to the same object.
+
+2. you could write like ((object != object copy) && (object.equals(object copy)))
+(object != object copy) would make sure that it isn’t a shallow copy, and then (object.equals(object copy)) checks to see if the objects have the same values.

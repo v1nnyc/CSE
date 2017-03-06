@@ -1,0 +1,1 @@
+public class Duck extends Bird {   public Duck() {     super( "Duck" ); }   public Duck( String name ) {     super( name + " Duck" ); }   public String speak() {     return "Quack"; } }

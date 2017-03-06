@@ -1,0 +1,232 @@
+/*
+ * Name: Vincent Cannalla
+ * Login: cs8bwals  <<< --- Use your cs8b course-specific account name
+ * Date: January 25, 2016
+ * File:  GameManager.java
+ * Sources of Help: the textbook, piazza
+ *
+ * This program is responsible for managing the game. it generates new
+ * boards and is responsible for the movement of the game. it assigns all
+ * the moves
+ * to a corresponding direction
+ */
+//------------------------------------------------------------------//
+// GameManager.java                                                 //
+//                                                                  //
+// Game Manager for 2048                                            //
+//                                                                  //
+// Author:  W16-CSE8B-TA group                                      //
+// Date:    1/17/16                                                 //
+//------------------------------------------------------------------//
+
+import java.util.*;
+import java.io.*;
+
+/*
+ * Name: gameManager
+ * Purpose: this is the game manager class and it generates boards and
+ * checks to see if moves are valid and makes sure it only inputs moves
+ * that are valid and prompts the user to enter moves and shows the board.
+ * Parameters: none
+ * Return: none
+ */
+public class GameManager {
+  // Instance variables
+  private Board board; // The actual 2048 board
+  private String outputFileName; // File to save the board to when exiting
+
+  /*
+   * Name: gamemanager
+   * Purpose: this constructor initializes the instance variables and creates
+   * a new board when a new game is started
+   * Parameters: board size is an int, its just the size of the board.
+   * outputboard
+   * is a string, its the name to be assigned to the file when your board is
+   * saved
+   * random is a random, its passed as parameters when making a new board
+   * Return: none
+   */
+  public GameManager(int boardSize, String outputBoard, Random random) {
+    System.out.println("Generating a New Board");
+    this.board = new Board(boardSize, random);
+    this.outputFileName = outputBoard;
+  }
+
+  /*
+   * Name: gamemanager
+   * Purpose: this is the constructor that gets used when there's already a
+   * board
+   * and it gets loaded from that. it also initializes the instance variables
+   * Parameters: inputboard is a string, its the file name of the board.
+   * outputboard
+   * is a string and that is assigned to the class's instance variable for
+   * saving
+   * later
+   * random is a random, its passed into the board class for random tiles.
+   * Return: none
+   */
+  public GameManager(String inputBoard, String outputBoard, Random random)
+    throws IOException {
+    System.out.println("Loading Board from " + inputBoard);
+    this.board = new Board(inputBoard, random);
+    this.outputFileName = outputBoard;
+  }
+
+  /*
+   * Name: play
+   * Purpose: this is the method that does it all. its the main play loop.
+   * it takes input from the user to specify and execute moves. if the player
+   * enters an invalid command the method reminds the user of the moves and
+   * reprompts for a move. if the player wants to quit or the game is over the
+   * method saves the board to a file. if the game is over, the method prints
+   * "game over". now there's an undo function, that will undo your last move.
+   * Parameters: none
+   * Return: void
+   */
+  public void play() throws IOException {
+    printControls();
+    //continue playing while the game is not over
+    while(board.isGameOver()==false){
+      System.out.println("Score: "+board.getScore());
+      print2DArray(this.board.getGrid());
+      Scanner input = new Scanner(System.in);
+      System.out.print("Enter move");
+      String inputMove = input.next();
+      String move = isInput(inputMove);
+      //since q isn't a direction, i put this if statement before the
+      //direction method
+      if(move.equals("q")){
+        board.saveBoard(this.outputFileName);
+        return;
+      }
+      //also since u isnt a move
+      if(move.equals("u")){
+        board.undo();
+      }
+      if(!move.equals("u")){
+        Direction newDir = whatDir(move);
+        moveOrNah(newDir);
+      }
+    }
+    if(this.board.isGameOver() == true){
+      System.out.println("Game Over!");
+      board.saveBoard(this.outputFileName);
+      return;
+    }
+  }
+  /*
+   * Name: moveornah
+   * Purpose: i used this method to check if the user could move in the
+   * direction they inputted. it uses the canmove method to check, if that
+   * returns false the method reprompts the user to enter a move and re-checks
+   * since the user can input q when reentering a move, i had to account for
+   * that edge case. if they enter q it returns to the play method but it says
+   * "press q to quit again" and if they press q again it will quit the play
+   * loop
+   * Parameters: direct, its a direction. its the direction the user wants to
+   * move.
+   * Return: void
+   */
+  public void moveOrNah(Direction direct)throws IOException{
+    if(this.board.canMove(direct)==true){
+      board.move(direct);
+      board.addRandomTile();
+    }
+    else if(this.board.canMove(direct)==false){
+      Scanner input = new Scanner(System.in);
+      System.out.print("Enter new move");
+      String inputMove = input.next();
+      String move = isInput(inputMove);
+      if(!move.equals("q")){
+        Direction newDir = whatDir(move);
+        moveOrNah(newDir);
+      }
+      else if(move.equals("q")){
+        board.saveBoard(this.outputFileName);
+        System.out.println("Do you want to quit? press q again to quit.");
+        return;
+      }
+    }
+  }
+  /*
+   * Name: whatDir
+   * Purpose: this method assigns the input string to a direction.
+   * Parameters: string, which is a string. it gets assigned to a direction
+   * Return: Direction.
+   */
+  public Direction whatDir(String string)throws IOException{
+    Direction k = Direction.UP;
+    Direction j = Direction.DOWN;
+    Direction h = Direction.LEFT;
+    Direction l = Direction.RIGHT;
+    if(string.equals("k")){
+      return k;
+    }
+    if(string.equals("j")){
+      return j;
+    }
+    if(string.equals("h")){
+      return h;
+    }
+    if(string.equals("l")){
+      return l;
+    }
+    return null;
+  }
+
+  /*
+   * Name: isInput
+   * Purpose: this method checks to see if the user input is a valid command.
+   * if it isnt, the method prints out the controls, prints out the board
+   * reprompts the user to enter a new move, and uses the method to check
+   * if that input is a valid move or not.
+   * Parameters: string, its a string. this is what the user inputs when they
+   * enter a move.
+   * Return: string. if the input is a valid move, that string is returned and
+   * then assigned to a direction in the whatDir method.
+   */
+  public String isInput(String string)throws IOException{
+    if(string.equals("k")||string.equals("j")||
+       string.equals("h")||string.equals("l")||
+       string.equals("q")||string.equals("u")){
+      return string;
+    }
+    else{
+      printControls();
+      print2DArray(this.board.getGrid());
+      Scanner input = new Scanner(System.in);
+      System.out.print("Enter move");
+      String newMove = input.next();
+      return isInput(newMove);
+    }
+  }
+
+  /*
+   * Name: printControls
+   * Purpose: it prints the controls. i use it when the user enters an invalid
+   * move to remind them what they can enter.
+   * Parameters: none
+   * Return: void
+   */
+  private void printControls() {
+    System.out.println("  Controls:");
+    System.out.println("    k - Move Up");
+    System.out.println("    j - Move Down");
+    System.out.println("    h - Move Left");
+    System.out.println("    l - Move Right");
+    System.out.println("    q - Quit and Save Board");
+    System.out.println("    u - Undo last move");
+    System.out.println();
+  }
+  /*
+   * Name: print2DArray
+   * Purpose: this method just prints the board whenever i need it to
+   * Parameters: array. its an int[][](2d array).
+   * Return: void
+   */
+  private static void print2DArray(int[][] array)
+  {
+    for(int i = 0; i < array.length; i++)
+      System.out.println(Arrays.toString(array[i]));
+  }
+}

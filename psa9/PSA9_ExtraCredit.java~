@@ -1,0 +1,419 @@
+/*
+ * Name:  Jane-Joe Student  <<< --- Replace with Your Name
+ * Login: cs8BfXXX  <<< --- Use your cs8Bf course-specific account name
+ * Date:  Month Day, Year
+ * File:  Name of this file, for example: CS8BTurtle_Threaded.java
+ * Sources of Help: ... (for example: names of people/tutors/students, books, websites, etc.)
+ *
+ * Describe what this program does here.
+ */
+
+import turtleClasses.*;
+import java.awt.Color;
+import java.util.concurrent.*;
+
+/*
+ * Name:       Class name
+ * Purpose:    Briefly describe the purpose of this class
+ */
+
+public class PSA9_ExtraCredit extends Turtle implements Runnable{
+  private final static int CHAR_WIDTH = 40;
+  private final static int CHAR_HEIGHT = 80;
+  private final static int PADDING_BETWEEN_CHARS = 40;
+  private final static int PADDING_BETWEEN_LINES = 40;
+  private final static int CHAR_SPACING = CHAR_WIDTH + PADDING_BETWEEN_CHARS;
+  private final static int LINE_SPACING = CHAR_HEIGHT + PADDING_BETWEEN_LINES;
+  
+  private final static int WORLD_WIDTH = 800;
+  private final static int WORLD_HEIGHT = 500;
+  
+  private final static int START_X_1 = ((WORLD_WIDTH/2) - (CHAR_SPACING * 4) + 20); // starting x offset for line 1
+  private final static int START_X_2 = ((WORLD_WIDTH/2) - (CHAR_SPACING * 3) + 20); // starting x offset for line 2
+  private final static int START_X_3 = ((WORLD_WIDTH/2) - (CHAR_SPACING * 2) + 20); // starting x offset for line 3
+  private final static int START_Y = (int)((WORLD_HEIGHT/2) - (LINE_SPACING * 1.5)+20);   // starting y offset
+  
+  private final static int PEN_WIDTH = 10;
+  private final static Color PEN_COLOR = Color.BLUE;
+  
+  private char ch;
+  private int x;
+  private int y;
+  
+  
+  
+  /*
+   * Delay between turtle actions (turns, moves) in milliseconds.
+   * 1000 = 1 sec.  so  200 = 0.2 sec.
+   */
+  private final static int DELAY = 2;
+  
+  /*
+   * Name:       Constructor name
+   * Purpose:    Briefly describe the purpose of this constructor
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   */
+  
+  public PSA9_ExtraCredit(World w, char ch, int x, int y, int delay) {
+    super(w, delay);
+    this.ch = ch;
+    this.x = x;
+    this.y = y;
+  }               // on World w with delay of each turtle's action.
+  
+  /*
+   * Name:       Method name
+   * Purpose:    Briefly describe the purpose of this method
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   * Return:     Specify the return type and what it represents.
+   *             If no return value, just specify void.
+   */
+  
+  private void drawIdk(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(10);
+    turnLeft();
+    forward(20);
+    turnLeft();
+    forward(30);
+    turnLeft();
+    forward(40);
+    turnLeft();
+    forward(50);
+    turnLeft();
+    forward(60);
+    turnLeft();
+    forward(70);
+    turnLeft();
+    forward(80);
+    turnLeft();
+    forward(90);
+    turnRight();
+    forward(90);
+    turnRight();
+    forward(15);
+    turnRight();
+    forward(70);
+    turnLeft();
+    forward(15);
+    turnLeft();
+    forward(70);
+    turnRight();
+    forward(15);
+    turnLeft();
+    forward(70);
+    turnRight();
+    forward(15);
+    turnRight();
+    forward(90);
+    turnRight();
+    forward(10);
+    turnLeft();
+    forward(50);
+    turnLeft();
+    forward(35);
+    turnLeft();
+    forward(15);
+    turnLeft();
+    forward(15);
+    turnRight();
+    forward(15);
+    turnRight();
+    forward(10);
+    turnLeft();
+    forward(50);
+    turnRight();
+    forward(25);
+    turnRight();
+    forward(200);
+    turnRight();
+    forward(100);
+    turnRight();
+    forward(80);
+    turnLeft();
+    forward(25);
+    turnRight();
+    forward(110);
+    turnLeft();
+    forward(20); 
+  }
+  
+  private void drawJ(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH/2);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnRight();
+    forward(CHAR_WIDTH/2);
+  }
+  
+  private void drawJu(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH/2);
+    turnLeft();
+    forward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH/2);
+  }
+  
+  private void drawH(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT/2);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT/2);
+    backward(CHAR_HEIGHT);
+  }
+  
+  private void drawV(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turn(80);
+    forward(CHAR_HEIGHT);
+    turn(-160);
+    forward(CHAR_HEIGHT);
+  }
+  
+  private void drawVu(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turn(-80);
+    forward(CHAR_HEIGHT);
+    turn(160);
+    forward(CHAR_HEIGHT);
+  }
+  
+  private void drawD(int x, int y) {
+    penUp();
+    moveTo(x, y);  // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH/2);
+    turn(-30);
+    forward(10);
+    turnToFace(getXPos() + 1, getYPos());
+    turnLeft();
+    forward(70);
+    turn(-30);
+    forward(10);
+    turnToFace(getXPos() + 1, getYPos());
+    backward(CHAR_WIDTH/2);
+  }
+  
+  /*
+   * Name:       Method name
+   * Purpose:    Briefly describe the purpose of this method
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   * Return:     Specify the return type and what it represents.
+   *             If no return value, just specify void.
+   */
+
+
+  
+  private void drawA(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT/2);
+    turnRight();
+    forward(CHAR_WIDTH);
+  }
+  
+  private void drawAu(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnLeft();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT/2);
+    turnLeft();
+    forward(CHAR_WIDTH);
+  }
+
+
+  
+  private void drawT(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH/2);
+    turnRight();
+    forward(CHAR_HEIGHT);
+  }
+  
+  private void drawTu(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH/2);
+    turnLeft();
+    forward(CHAR_HEIGHT);
+  }
+  
+  private void drawE(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    backward(CHAR_WIDTH);
+  }
+  
+  private void drawR(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    backward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnRight();
+    forward(CHAR_WIDTH);
+    turnToFace(getXPos() + 1, getYPos());
+    turn(45);
+    forward(CHAR_WIDTH+15);
+  }
+  
+  private void drawRu(int x, int y) {
+    penUp();
+    moveTo(x, y); // always start in upper left corner of this char block
+    turnToFace(getXPos() + 1, getYPos()); // face right
+    penDown();
+    turnRight();
+    forward(CHAR_HEIGHT);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnLeft();
+    forward(CHAR_WIDTH);
+    turnToFace(getXPos() + 1, getYPos());
+    turn(-45);
+    forward(CHAR_WIDTH+15);
+  }
+  
+  
+  
+  /*
+   * Name:       Method name
+   * Purpose:    Briefly describe the purpose of this method
+   * Parameters: List all parameters and their types and what they represent.
+   *             If no parameters, just state None.
+   * Return:     Specify the return type and what it represents.
+   *             If no return value, just specify void.
+   */
+  
+  public static void main(String[] args){
+    
+    
+    World w = new World(WORLD_WIDTH, WORLD_HEIGHT);
+    ExecutorService executor = Executors.newCachedThreadPool();
+    
+    executor.execute(new PSA9_ExtraCredit(w, 'J', 20, 20, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'A', 100, 20, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'V', 180, 20, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'A', 260, 20, 500));
+   executor.execute(new PSA9_ExtraCredit(w, '1', 20, 230, 500));
+   executor.execute(new PSA9_ExtraCredit(w, '2', 100, 230, 500));
+   executor.execute(new PSA9_ExtraCredit(w, '3', 180, 230, 500));
+   executor.execute(new PSA9_ExtraCredit(w, '2', 260, 230, 500));
+   executor.execute(new PSA9_ExtraCredit(w, 'T', 20, 270, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'H', 100, 270, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'R', 180, 270, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'E', 260, 270, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'A', 340, 270, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'D', 420, 270, 500));
+    executor.execute(new PSA9_ExtraCredit(w, '4', 20, 470, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'H', 100, 390, 500));
+    executor.execute(new PSA9_ExtraCredit(w, '5', 180, 390, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'E', 260, 390, 500));
+    executor.execute(new PSA9_ExtraCredit(w, '2', 340, 470, 500));
+    executor.execute(new PSA9_ExtraCredit(w, 'D', 420, 390, 500));
+    executor.execute(new PSA9_ExtraCredit(w, '6', 600, 100, 50));
+    
+    executor.shutdown();
+  }
+  
+  @Override
+  public void run(){
+    this.setPenWidth(PEN_WIDTH);
+    this.setPenColor(PEN_COLOR);
+    switch(ch) {
+      case 'J': this.drawJ(x, y); break;
+      case 'A': this.drawA(x, y); break;
+      case 'V': this.drawV(x, y); break;
+      case 'T': this.drawT(x, y); break;
+      case 'H': this.drawH(x, y); break;
+      case 'R': this.drawR(x, y); break;
+      case 'E': this.drawE(x, y); break;
+      case 'D': this.drawD(x, y); break;
+      case '1': this.drawJu(x, y); break;
+      case '2': this.drawAu(x, y); break;
+      case '3': this.drawVu(x, y); break;
+      case '4': this.drawTu(x, y); break;
+      case '5': this.drawRu(x, y); break;
+      
+      case '6': this.setPenColor(Color.RED);
+      this.drawIdk(x, y); break;
+    }
+  }
+}

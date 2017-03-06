@@ -1,0 +1,22 @@
+public class FubarTest{
+  public static int search(int[] list, int key){
+    System.out.println("once");
+    int low = 0;
+    int high = list.length - 1;
+    System.out.println(high);
+    return search(list, key, low, high);
+  }
+  private static int search(int[] list, int key, int low, int high){
+    System.out.println("once");
+    if(low>high)
+      return -low - 1;
+    int mid = (low + high)/2;
+    System.out.println(mid);
+      if(key < list[mid])
+      return search(list,key,low,mid-1);
+    else if(key == list[mid])
+      return mid;
+      else
+      return search(list,key,mid+1,high);
+  }
+}

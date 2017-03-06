@@ -1,0 +1,25 @@
+public class Inversions{
+  
+  public int inversions(int [] array){
+    int inversionCount = 0;
+    for(int i = 0; i<array.length-1; i++){
+      for(int j = 1; j<array.length; j++){
+        if(array[i] > array[j]){
+          inversionCount++;
+        }
+      }
+    }
+    System.out.println("ic is:" + inversionCount);
+    return inversionCount;
+  }
+  public void main( String[] args ){
+    int[] poop = new int[6];
+    poop[0] = 4;
+    poop[1] = 5;
+    poop[2] = 6;
+    poop[3] = 2;
+    poop[4] = 1;
+    poop[5] = 3;
+    inversions(poop);
+    }
+  }

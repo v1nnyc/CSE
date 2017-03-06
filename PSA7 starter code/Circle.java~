@@ -1,0 +1,199 @@
+/* 
+ * Name: Vincent Cannalla 
+ * Login: cs8bwals  <<< --- Use your cs8b course-specific account name 
+ * Date: February 22, 2016
+ * File:  Circle.java 
+ * Sources of Help: piazza
+ * 
+ *This is the circle class. it is responsible for making circle objects.
+ */
+import java.awt.*;
+import objectdraw.*;
+
+public class Circle extends Shape {
+  private Point center;
+  private int radius;
+  
+  
+   /* 
+   * Name: Circle
+   * Purpose: this is a circle constructor. it assigns a center point and a
+   * radius of 0.
+   * Parameters: none
+   * Return: none 
+   */
+  public Circle() {
+    //call super to assign name to member variable
+    super("Circle");
+    this.center = new Point();
+    //default radius is 0
+    this.radius = 0;
+  }
+  
+  
+   /* 
+   * Name: Circle
+   * Purpose: this is a circle constructor. it assigns a center point and a
+   * radius.
+   * Parameters: Point, the center point. Int, which is the value for the radius
+   * Return: none 
+   */
+  public Circle(Point center, int radius) {
+    //call super to assign name to member variable
+    super("Circle");
+    //check if center is null
+    if (center == null) {
+      center = new Point();
+    }
+    this.center = new Point(center);
+    this.radius = radius;
+  }
+  
+  
+  /* 
+   * Name: Circle
+   * Purpose: this is a circle constructor. it makes a deep copy of another 
+   * circle object.
+   * Parameters: Circle, c.
+   * Return: none 
+   */
+  public Circle(Circle c) {
+    //pass c through nullOrNah to make sure it isn't a null object
+    //call super to assign name to member variable
+    super(nullOrNah(c).getName());
+    //make sure that circle object isn't null, else make new circle
+   if (c == null) {
+      c = new Circle();
+    }
+    this.center = new Point(c.getCenter());
+    this.radius = c.getRadius();
+  }
+  
+  
+  /* 
+   * Name: getCenter
+   * Purpose: this is a getter. it returns the center of the circle.
+   * Parameters: none
+   * Return: Point, the center. 
+   */
+  public Point getCenter() { return this.center;}
+  
+  
+  /* 
+   * Name: getRadius
+   * Purpose: this is a getter. it returns the radius
+   * Parameters: none
+   * Return: Int, the radius. 
+   */
+  public int getRadius() { return this.radius;}
+  
+  
+  /* 
+   * Name: move
+   * Purpose: this is responsible for moving the shape. it reassigns the
+   * values of the x and y points in the center.
+   * Parameters: ints xDelta and yDelta
+   * Return: none 
+   */
+  public void move(int xDelta, int yDelta) {
+    //gets the x and y coordinates from upperLeft and then adds the delta
+    //values to them
+    int x = this.getCenter().getX() + xDelta;
+    int y = this.getCenter().getY() + yDelta;
+    this.center = new Point(x, y);
+  }
+  
+  
+   /* 
+   * Name: nullOrNah
+   * Purpose: this checks if the circle passed through the Circle(Circle)
+   * constructor is null. 
+   * Parameters: Circle, o.
+   * Return: String. the name of the object. 
+   */
+  private static Circle nullOrNah(Circle o){
+    //check if o is null
+    if (o == null) {
+      //if it is return new circle
+      return new Circle();
+    }
+    //else return the original
+    return o;
+  }
+  
+  
+  /* 
+   * Name: toString
+   * Purpose: this converts the member variables and name into a string
+   * Parameters: none
+   * Return: String 
+   */
+  @Override
+  public String toString() {
+    return new String(getName()+": Center: Point: (" 
+                        + getCenter() + "); Radius: " +getRadius());
+  }
+ 
+  
+  /* 
+   * Name: equals
+   * Purpose: this tests to make sure that the object is an instance of the
+   * class that it says to be. it checks all of the member variables for that
+   * kind of object.
+   * Parameters: Object o
+   * Return: boolean. 
+   */
+  @Override
+  public boolean equals(Object o) {
+    //first check to make sure it's an instance of the class
+    //then check that all the member variables match
+    if(o == null){
+      return false;
+    }
+    return (o instanceof Circle && this.getCenter().equals(((Circle) o).getCenter())
+              && this.getRadius() == ((Circle) o).getRadius()
+              && this.getName() == ((Circle) o).getName() );
+  }
+  
+  
+  /* 
+   * Name: hashCode
+   * Purpose: this returns the hashcode
+   * Parameters: none
+   * Return: int. 
+   */
+  @Override
+  public int hashCode() {
+    return this.toString().hashCode();
+  }
+  
+  
+  /* 
+   * Name: draw
+   * Purpose: this method is responsible for creating a DrawableInterface 
+   * object with the shape, and then putting it on the canvas.
+   * Parameters: DrawingCanvas, canvas– which is what the object will be drawn
+   * on. Color, c– the color of the shape. Boolean, fill– whether or not the
+   * object will have a solid color.
+   * Return: none 
+   */
+  public void draw(DrawingCanvas canvas, Color c, boolean fill) {
+    //check to see if c is null
+    if(c == null){c = Color.BLACK;}
+    int rad = this.getRadius()*2;
+    //get x and y values
+    int x = this.getCenter().getX();
+    int y = this.getCenter().getY();
+    //make circle into a drawableinterface object
+    DrawableInterface circle;
+    //if fill then make a filled shape
+    if(fill){
+      circle = new FilledOval(x-(rad/2), y-(rad/2), rad, rad, canvas);
+      circle.setColor(c);
+    }
+    //otherwise its a framed shape
+    else
+      circle = new FramedOval(x-(rad/2), y-(rad/2), rad, rad, canvas);
+    circle.setColor(c);
+  }
+}

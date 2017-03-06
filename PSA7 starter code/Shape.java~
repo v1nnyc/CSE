@@ -1,0 +1,88 @@
+/* 
+ * Name: Vincent Cannalla 
+ * Login: cs8bwals  <<< --- Use your cs8b course-specific account name 
+ * Date: February 22, 2016
+ * File:  Shape.java 
+ * Sources of Help: piazza
+ * 
+ *This is the abstract class responsible for shapes
+ */
+import java.awt.*;
+import objectdraw.*;
+
+public abstract class Shape {
+  private String name;
+  
+  
+  /* 
+   * Name: Shape
+   * Purpose: this is a shape constructor. It creates a shape object with no
+   * parameters
+   * Parameters: none
+   * Return: none 
+   */
+  public Shape() {
+    this.name = new String("shape");
+  }
+  
+  
+  /* 
+   * Name: Shape
+   * Purpose: this is a shape constructor. It creates a shape object with name
+   * parameters
+   * Parameters: String. name.
+   * Return: none 
+   */
+  public Shape(String name) {
+    this.name = name;
+  }
+  
+  
+  /* 
+   * Name: getName
+   * Purpose: this is a getter method that returns the name member variable
+   * Parameters: none
+   * Return: String. the name member variable.
+   */
+  public String getName() {
+    return this.name;
+  }
+  
+  
+  /* 
+   * Name: setName
+   * Purpose: this is a setter method.it assigns the string parameter to the 
+   * name member variable
+   * Parameters: String. name
+   * Return: none
+   */
+  private void setName(String name) {
+    this.name = name;
+  }
+  
+  
+  /* 
+   * Name: equals
+   * Purpose: this tests to make sure that the object is an instance of the
+   * class that it says to be. it checks all of the member variables for that
+   * kind of object.
+   * Parameters: Object o
+   * Return: boolean. 
+   */
+  @Override
+  public boolean equals(Object o) {
+    String s = "\n**********************************************************\n"
+      + "This should never print. If it does print, then\n"
+      + "you did not override equals() properly in class "
+      + this.getClass().getName() + "\n"
+      + "**********************************************************\n";
+    
+    System.out.println(s);
+    
+    return this == o;
+  }
+  
+  public abstract void move(int xDelta, int yDelta);
+  
+  public abstract void draw(DrawingCanvas canvas, Color c, boolean fill);
+}

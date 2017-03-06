@@ -1,0 +1,21 @@
+Program description:
+MyCritter.java:
+this makes a critter called my critter. the class determines how the object will act. what direction it will move in, what color it is, whether it will eat or not, how it will attack, and how it will appear on the board. The whole simulation is kind of a fighting game. each animal will fight with the other animals and mate with similar animals. they will also eat food dots on the board. they keep moving unless they sleep, mate, or are eating. any animal that is attacked while it’s sleeping or eating or mating will automatically lose. also when the animals mate they make little lower case letters and it’s cute because they’re babies.
+
+ReverseRecurse.java:
+this starts by prompting the user to make an array.
+first the size of the array is entered. it must be a positive int, otherwise it will continue to ask for an int. then the user is prompted to enter in the values for the elements. at this time, if the user enters anything other than an int the program will return an array of the ints that had been entered. it then has a method to print out the array. there are two recursive methods. one is an ends-and-middle recursive method that reverses the order of the array by switching the end two elements and then switching the other end two as it moves towards the middle of the array. the other one is an edges and center. it’s kind of like the other one but instead of moving towards the middle a new array is created, its edges are switched, and the remaining elements are made into a new array and those have their edges switches and it keeps recursing.
+
+VIM Q’s:
+1. Ok so in normal mode: you would enter
+“:set shiftwidth=1”
+then (assuming you’re on the line you want to start with (otherwise you can just press #gg)) enter
+“#>>”
+(the # sign should be replaced with an int value of how many lines you want to indent.)
+to shift left (de-indent) enter
+“#<<“
+(the # sign should be replaced with an int value of how many lines you want to indent.)
+2. To indent a curly bracket block (if you have your cursor on one of the brackets):
+RIGHT: >%
+LEFT: <%
+3.To open a new line below and insert press “o” 

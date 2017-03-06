@@ -1,0 +1,17 @@
+public class While{
+  public static void main(String[] args){
+    final int MAX = 11;
+    final int MIN = 4;
+    int i = 8;
+    int j, 6;
+    while(i<=MAX){
+      j=i;
+      while(j>MIN){
+        System.out.println(i+ " " + j);
+        j-=2;
+      }
+      i+=3;
+    }
+    System.out.println(i+" " + j);
+  }
+}
